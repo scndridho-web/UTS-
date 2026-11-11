@@ -1,7 +1,7 @@
 # U2. Skenario Atribut Kualitas
 
 **BAB II:** Skenario Atribut Kualitas  
-**Penanggung jawab:** [Nama Anggota / Penanggung Jawab Bagian U2]  
+**Penanggung jawab:** [Nendra Riskullah / Penanggung Jawab Bagian U2]  
 
 **Ketentuan dosen:** 3 skenario (satu per karakteristik pendorong), masing-masing 6 komponen; ukuran respons berupa angka; minimal satu skenario menjawab masalah utama[cite: 4].
 
