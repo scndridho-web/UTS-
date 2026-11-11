@@ -1,7 +1,7 @@
 # U7. Architecture Decision Records (ADR)
 
 **BAB V:** Evaluasi dan ADR (Bagian ADR)  
-**Penanggung jawab:** [Nama Anggota / Penanggung Jawab Bagian U7]  
+**Penanggung jawab:** [Muh. Ridho Awal Putra / Penanggung Jawab Bagian U7]  
 
 **Ketentuan dosen:** Minimal 2 ADR baru (mencakup Title, Status, Context, Decision, Consequences) yang mendasari keputusan rancangan arsitektur kelompok.
 
