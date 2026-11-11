@@ -1,7 +1,7 @@
 # U4. Pola Arsitektur
 
 **BAB III:** Taktik dan Pola (Bagian Pola)  
-**Penanggung jawab:** [Nama Anggota / Penanggung Jawab Bagian U4]  
+**Penanggung jawab:** [Muh. Ridho Awal Putra / Penanggung Jawab Bagian U4]  
 
 **Ketentuan dosen:** Minimal dua pola dari kategori berbeda; untuk tiap pola: alasan memilih, kelebihan, kekurangan pada layanan UMI. Tambahkan satu perbedaan gaya dan pola arsitektur.
 
