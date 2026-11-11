@@ -13,7 +13,7 @@ Subsistem **Attendance Management** (Layanan Presensi dan Rekap Kehadiran Smart 
 ## 1.2 Masalah Utama Layanan dan Bukti Wawancara
 * **Masalah Utama:** Ketidaksesuaian, lambatnya sinkronisasi, dan fragmentasi informasi rekap kehadiran mahasiswa antar-mata kuliah (harus dibuka satu per satu), serta ketidaklengkapan status presensi akibat beberapa perkuliahan belum/terlambat ter-input ke SIAKAD/Kalam[cite: 3, 5].
 * **Dasar Bukti Wawancara Responden (R1–R5):**
-  * **R1 (Dosen - Firsa Amelia Putri):** Kendala jaringan atau gangguan sistem sering menghambat proses pengisian presensi[cite: 4]. Dosen membutuhkan rekap kehadiran otomatis, fitur pencarian, filter mata kuliah, notifikasi kehadiran rendah, serta unduh laporan (PDF/Excel)[cite: 4].
+  * **R1 (Firsa Amelia Putri):** Kendala jaringan atau gangguan sistem sering menghambat proses pengisian presensi[cite: 4]. Dosen membutuhkan rekap kehadiran otomatis, fitur pencarian, filter mata kuliah, notifikasi kehadiran rendah, serta unduh laporan (PDF/Excel)[cite: 4].
   * **R2 (Mahasiswa - Wahyuningsih):** Informasi rekap harus dibuka per mata kuliah satu per satu dan terkendala jaringan internet[cite: 5].
   * **R3 (Mahasiswa - Harry):** Dasbor saat ini terlalu rumit dan tidak simpel[cite: 5], serta sering ditemukan mata kuliah yang tidak menampilkan data kehadiran[cite: 5].
   * **R4 (Mahasiswa - Salwa):** Kesulitan memantau presensi karena tidak semua dosen mengabsen langsung di SIAKAD UMI[cite: 5], memerlukan pencarian mata kuliah dan perbaikan tampilan rekap[cite: 5].
