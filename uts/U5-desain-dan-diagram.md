@@ -1,4 +1,4 @@
-# U5. Desain dan Diagram
+\# U5. Desain dan Diagram
 
 **BAB IV:** Desain  
 **Penanggung jawab:** [Nama Anggota / Penanggung Jawab Bagian U5]  
@@ -11,7 +11,7 @@
 
 ## 4.1 Diagram Konteks
 
-![Diagram Konteks](diagram/konteks-rekap-kehadiran.png)
+![Diagram Konteks](diagram/diagram-konteks.png)
 
 **Keterangan Komponen Konteks:**
 * **Mahasiswa:** Pengguna yang mengakses sistem untuk melihat ringkasan/rekapitulasi kehadiran lintas mata kuliah secara terpusat.
@@ -24,31 +24,24 @@
 
 ## 4.2 Diagram Arsitektur yang Menerapkan Pola
 
-![Diagram Arsitektur](diagram/arsitektur-microservices.png)
-
-*Gambar 4.2 Arsitektur microservices Layanan Rekap Kehadiran*
+![Diagram Arsitektur](diagram/diagram-arsitektur.png)
 
 **Keterangan Alur Arsitektur:**
-Permintaan dari Aplikasi Klien masuk melalui **API Gateway** (ungu) ke **Rekap Service** (teal). Rekap Service memeriksa **Cache Rekap** (kuning) terlebih dahulu. Jika kosong (*cache miss*), ia memanggil **Presensi Service**, **Mata Kuliah Service**, dan **Mahasiswa Service**, yang mengakses SIAKAD UMI hanya melalui **Adapter SIAKAD** (merah muda). **Notifikasi Service** dipicu oleh Rekap Service saat kehadiran mahasiswa terdeteksi di bawah batas minimum.
+Diagram di atas merepresentasikan penerapan pola arsitektur *microservices* dan *layered* pada layanan rekap kehadiran UMI, di mana komunikasi data diatur melalui lapisan terstruktur untuk menghindari beban berlebih pada basis data utama SIAKAD.
 
 ---
 
-## 4.3 Diagram UML (Sequence): Melihat Rekap Kehadiran
+## 4.3 Diagram UML (Activity / Sequence)
 
-![Diagram UML Sequence](diagram/uml-sequence-rekap.png)
+![Diagram UML Activity](diagram/diagram-uml-activity.png)
 
-**Keterangan Alur Sequence:**
-1. **Mahasiswa** mengirimkan permintaan HTTP `GET /rekap` melalui **API Gateway**.
-2. **API Gateway** meneruskan permintaan beserta token autentikasi ke **Rekap Service**.
-3. **Rekap Service** melakukan pengecekan ke **Cache Rekap**. 
-4. Jika terjadi *cache miss*, **Rekap Service** mengambil data mentah ke **Presensi Service**.
-5. Setelah data presensi diterima, **Rekap Service** menyimpan kembali data tersebut ke cache menggunakan strategi *Time-To-Live* (TTL).
-6. Data rekap dan persentase kehadiran dikembalikan ke **API Gateway** lalu dirender menjadi respons JSON ke perangkat **Mahasiswa**.
+**Keterangan Alur UML:**
+Diagram ini memetakan alur aktivitas (*activity workflow*) proses pemeriksaan dan pembaruan status kehadiran mahasiswa di dalam sistem usulan.
 
 ---
 
 ## 4.4 Tiga Prinsip Desain yang Diterapkan
 
-1. **Single Responsibility Principle (SRP):** Setiap layanan mikro (*Presensi Service*, *Mata Kuliah Service*, *Mahasiswa Service*, dan *Notifikasi Service*) memiliki satu fokus tanggung jawab fungsional yang spesifik.
-2. **Layered & Decoupled Access (Pemisahan Melalui Adapter):** Komunikasi langsung dengan SIAKAD monolitik universitas diisolasi melalui *Adapter SIAKAD* guna melindungi integritas sistem utama dari lonjakan trafik layanan rekap.
-3. **Performance Optimization via Caching (Caching Strategy):** Penerapan *Cache-Aside* dengan *TTL* pada data rekap guna memangkas waktu akses (*response time*) agar halaman rekap kehadiran dapat dimuat secara instan tanpa membebani basis data utama.
+1. **Single Responsibility Principle (SRP):** Setiap layanan mikro memiliki satu fokus tanggung jawab fungsional yang spesifik agar mudah dipelihara.
+2. **Layered & Decoupled Access:** Pemisahan akses langsung ke sistem SIAKAD utama universitas guna melindungi integritas data master.
+3. **Performance Optimization:** Penerapan strategi pemrosesan data yang efisien untuk memastikan waktu muat rekap kehadiran cepat dan responsif.
