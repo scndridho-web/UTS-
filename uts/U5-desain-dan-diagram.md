@@ -24,7 +24,7 @@
 
 ## 4.2 Diagram Arsitektur yang Menerapkan Pola
 
-![Diagram Arsitektur](diagram/diagram-arsitektur.png)
+![Diagram Arsitektur](diagram/utsdiagramdiagram-arsitektur.png)
 
 **Keterangan Alur Arsitektur:**
 Diagram di atas merepresentasikan penerapan pola arsitektur *microservices* dan *layered* pada layanan rekap kehadiran UMI, di mana komunikasi data diatur melalui lapisan terstruktur untuk menghindari beban berlebih pada basis data utama SIAKAD.
