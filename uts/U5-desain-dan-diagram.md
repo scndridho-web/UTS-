@@ -33,7 +33,7 @@ Diagram di atas merepresentasikan penerapan pola arsitektur *microservices* dan 
 
 ## 4.3 Diagram UML (Activity / Sequence)
 
-![Diagram UML Activity](diagram/diagram-uml-activity.png)
+![Diagram UML Activity](uts/diagram/utsdiagramdiagram-uml-activity.png)
 
 **Keterangan Alur UML:**
 Diagram ini memetakan alur aktivitas (*activity workflow*) proses pemeriksaan dan pembaruan status kehadiran mahasiswa di dalam sistem usulan.
