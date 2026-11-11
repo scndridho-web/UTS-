@@ -11,7 +11,7 @@
 
 ## 4.1 Diagram Konteks
 
-![Diagram Konteks](diagram/diagram-konteks.png)
+![Diagram Konteks](diagram/diagram-konteks.png.png)
 
 **Keterangan Komponen Konteks:**
 * **Mahasiswa:** Pengguna yang mengakses sistem untuk melihat ringkasan/rekapitulasi kehadiran lintas mata kuliah secara terpusat.
