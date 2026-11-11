@@ -1,7 +1,7 @@
 # U3. Taktik Arsitektur
 
 **BAB III:** Taktik dan Pola Arsitektur (Bagian Taktik)  
-**Penanggung jawab:** [Nama Anggota / Penanggung Jawab Bagian U3]  
+**Penanggung jawab:** [Nendra Riskullah / Penanggung Jawab Bagian U3]  
 
 **Ketentuan dosen:** Minimal 1 taktik tiap skenario: cara kerjanya dan harga yang dibayar[cite: 2].
 
