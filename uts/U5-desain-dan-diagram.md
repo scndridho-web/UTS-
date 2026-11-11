@@ -1,43 +1,54 @@
 # U5. Desain dan Diagram
 
-**BAB IV: Desain**  
-**Penanggung jawab:** [isi sesuai pembagian MID]
+**BAB IV:** Desain  
+**Penanggung jawab:** [Nama Anggota / Penanggung Jawab Bagian U5]  
 
-**Ketentuan dosen:** minimal **3 diagram** (konteks, arsitektur yang menerapkan pola, UML), **masing-masing berketerangan**, serta **3 prinsip desain** yang diterapkan.
+**Ketentuan dosen:** minimal **3 diagram** (konteks, arsitektur yang menerapkan pola, UML), masing-masing berketerangan, serta **3 prinsip desain** yang diterapkan.
 
 **PENTING:** Diagram PNG dan `.drawio` yang disertakan adalah **CONTOH RANCANGAN AWAL**. Semua komponen/arah hubungan harus disepakati kelompok, konsisten dengan U3/U4/U6/U7, dan belum berarti telah diimplementasikan.
 
-## 5.1 Diagram konteks
-![Diagram konteks usulan](diagram/diagram-konteks.png)
+---
 
-**Keterangan diagram:** [siapa aktor eksternal, di mana batas sistem, data apa yang masuk/keluar; jelaskan masalah utama yang hendak diatasi].
+## 4.1 Diagram Konteks
 
-**File edit:** `diagram/diagram-konteks.drawio`.
+![Diagram Konteks](diagram/konteks-rekap-kehadiran.png)
 
-## 5.2 Diagram arsitektur yang menerapkan pola
-![Diagram arsitektur usulan](diagram/diagram-arsitektur.png)
+**Keterangan Komponen Konteks:**
+* **Mahasiswa:** Pengguna yang mengakses sistem untuk melihat ringkasan/rekapitulasi kehadiran lintas mata kuliah secara terpusat.
+* **Dosen:** Pengguna yang memantau tingkat keaktifan mahasiswa, melakukan validasi presensi, serta mengunduh laporan rekap kehadiran kelas.
+* **Layanan Rekap Kehadiran:** Subsistem usulan yang bertugas mengumpulkan, memproses, dan menyajikan data presensi secara terpadu.
+* **SIAKAD UMI:** Sistem akademik utama universitas yang bertindak sebagai sumber data master presensi dan jadwal perkuliahan.
+* **Notifikasi:** Modul pendukung untuk mengirimkan *alert* atau peringatan otomatis apabila tingkat kehadiran mahasiswa berada di bawah batas minimum.
 
-**Keterangan diagram:** [jelaskan lapisan Portal/Panel, API, layanan domain, basis data, serta peran antrean event; tunjukkan Pola P-01 dan P-02 dan taktik U3].
+---
 
-**File edit:** `diagram/diagram-arsitektur.drawio`.
+## 4.2 Diagram Arsitektur yang Menerapkan Pola
 
-## 5.3 Diagram UML — Activity Diagram
-![Diagram UML activity usulan](diagram/diagram-uml-activity.png)
+![Diagram Arsitektur](diagram/arsitektur-microservices.png)
 
-**Keterangan diagram:** [jelaskan alur petugas mencatat peminjaman, validasi, perubahan status, dan pembaruan informasi katalog; sebut keputusan ketika buku tidak tersedia].
+*Gambar 4.2 Arsitektur microservices Layanan Rekap Kehadiran*
 
-**File edit:** `diagram/diagram-uml-activity.drawio`.
+**Keterangan Alur Arsitektur:**
+Permintaan dari Aplikasi Klien masuk melalui **API Gateway** (ungu) ke **Rekap Service** (teal). Rekap Service memeriksa **Cache Rekap** (kuning) terlebih dahulu. Jika kosong (*cache miss*), ia memanggil **Presensi Service**, **Mata Kuliah Service**, dan **Mahasiswa Service**, yang mengakses SIAKAD UMI hanya melalui **Adapter SIAKAD** (merah muda). **Notifikasi Service** dipicu oleh Rekap Service saat kehadiran mahasiswa terdeteksi di bawah batas minimum.
 
-## 5.4 Tiga prinsip desain yang diterapkan
-| No | Prinsip desain | Contoh penerapan pada diagram | Manfaat |
-|---|---|---|---|
-| 1 | [misalnya Separation of Concerns] | [isi komponen] | [isi] |
-| 2 | [misalnya Loose Coupling] | [isi komponen] | [isi] |
-| 3 | [misalnya High Cohesion] | [isi komponen] | [isi] |
+---
 
-## 5.5 Konsistensi dengan U3, U4, U6, U7
-- [ ] Nama komponen sama di setiap diagram dan teks.
-- [ ] Taktik untuk tiga skenario terlihat/terwakili secara jelas.
-- [ ] Dua pola dari U4 tampak pada diagram arsitektur.
-- [ ] Jika pembaruan melalui event dapat terlambat, jelaskan pengendalian dan trade-off-nya.
-- [ ] Rancangan terpilih digunakan konsisten pada evaluasi dan ADR.
+## 4.3 Diagram UML (Sequence): Melihat Rekap Kehadiran
+
+![Diagram UML Sequence](diagram/uml-sequence-rekap.png)
+
+**Keterangan Alur Sequence:**
+1. **Mahasiswa** mengirimkan permintaan HTTP `GET /rekap` melalui **API Gateway**.
+2. **API Gateway** meneruskan permintaan beserta token autentikasi ke **Rekap Service**.
+3. **Rekap Service** melakukan pengecekan ke **Cache Rekap**. 
+4. Jika terjadi *cache miss*, **Rekap Service** mengambil data mentah ke **Presensi Service**.
+5. Setelah data presensi diterima, **Rekap Service** menyimpan kembali data tersebut ke cache menggunakan strategi *Time-To-Live* (TTL).
+6. Data rekap dan persentase kehadiran dikembalikan ke **API Gateway** lalu dirender menjadi respons JSON ke perangkat **Mahasiswa**.
+
+---
+
+## 4.4 Tiga Prinsip Desain yang Diterapkan
+
+1. **Single Responsibility Principle (SRP):** Setiap layanan mikro (*Presensi Service*, *Mata Kuliah Service*, *Mahasiswa Service*, dan *Notifikasi Service*) memiliki satu fokus tanggung jawab fungsional yang spesifik.
+2. **Layered & Decoupled Access (Pemisahan Melalui Adapter):** Komunikasi langsung dengan SIAKAD monolitik universitas diisolasi melalui *Adapter SIAKAD* guna melindungi integritas sistem utama dari lonjakan trafik layanan rekap.
+3. **Performance Optimization via Caching (Caching Strategy):** Penerapan *Cache-Aside* dengan *TTL* pada data rekap guna memangkas waktu akses (*response time*) agar halaman rekap kehadiran dapat dimuat secara instan tanpa membebani basis data utama.
