@@ -1,7 +1,7 @@
 \# U5. Desain dan Diagram
 
 **BAB IV:** Desain  
-**Penanggung jawab:** [Nama Anggota / Penanggung Jawab Bagian U5]  
+**Penanggung jawab:** [Muh Iswan / Penanggung Jawab Bagian U5]  
 
 **Ketentuan dosen:** minimal **3 diagram** (konteks, arsitektur yang menerapkan pola, UML), masing-masing berketerangan, serta **3 prinsip desain** yang diterapkan.
 
